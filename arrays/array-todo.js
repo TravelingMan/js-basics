@@ -9,8 +9,14 @@ const todos = [{
   title: 'Learn some JS',
   completed: true
 }, {
-  title: 'Investigate new lens',
+  title: 'Throw a bat',
   completed: false
+}, {
+  title: 'Explore the Orient',
+  completed: false
+}, {
+  title: 'Defeat Daleks',
+  completed: true
 }]
 
 // Remove a todo object by text value
@@ -44,6 +50,19 @@ const getUnfinishedTodos = function (todos) {
   })
 }
 
+// Sort the todo array such that unfinished items are first
+const sortTodos = function (todos) {
+  todos.sort(function (a, b) {
+    if (!a.completed && b.completed) {
+      return -1
+    } else if (!b.completed && a.completed) {
+      return 1
+    } else {
+      return 0
+    }
+  })
+}
+
 // Log the todos array
 const logTodos = function () {
   todos.forEach(function (todo) {
@@ -74,6 +93,9 @@ console.log("Removed 'build a moat'")
 console.log("\nAll unfinished todos:")
 console.log(getUnfinishedTodos(todos))
 
+// Sort todos
+sortTodos(todos)
+
 // Final state
-console.log("\nFinal array contents")
+console.log("\nFinal sorted array contents")
 logTodos()
